@@ -1123,12 +1123,16 @@ unsigned int static GetNextWorkRequired(const CBlockIndex* pindexLast, const CBl
 
     printf("  pindexLast->nHeight = %"PRI64d" \n", pindexLast->nHeight);
     // compatible the old block 
-    if(pindexLast->nHeight < 22106){
+    if(pindexLast->nHeight < 22118){
 
         printf(" nTarget adjustment \n");
 
         nTargetSpacing = 2.5 * 60;
         nTargetTimespan = 3.5 * 24 * 60 * 60;
+        nInterval = nTargetTimespan / nTargetSpacing;
+    }else{
+        nTargetSpacing = 2.5 * 60;
+        nTargetTimespan = 10 * 2.5 * 60;
         nInterval = nTargetTimespan / nTargetSpacing;
     }
 
